@@ -21,11 +21,6 @@ npm run build (打包发布)
 
 # 项目效果
 
-静态图
-![效果](/src/assets/logo.jpg)
-
-动图
-![动图](/public/giffirst.gif)
 
 # 源码解析
 
