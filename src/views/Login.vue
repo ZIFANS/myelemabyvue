@@ -4,21 +4,25 @@
             <img src="../assets/logo.jpg" alt="my login image">
         </div>
         <!-- 手机号 -->
-        <InputGroup type="number" v-model="phone" placeholder="手机号" :btnTitle="btnTitle" :disabled="disabled"
-                    :error="errors.phone"
-                    @btnClick="getVerifyCode" />
-
+        <InputGroup
+                type="number"
+                v-model="phone"
+                placeholder="手机号"
+                :btnTitle="btnTitle"
+                :disabled="disabled"
+                :error="errors.phone"
+                @btnClick="getVerifyCode"
+        />
         <!-- 验证码 -->
         <InputGroup type="number" v-model="verifyCode" placeholder="验证码" :error="errors.code"/>
 
-        <!-- 用户服务协议-->
+        <!-- 用户服务协议 -->
         <div class="login_des">
             <p>
                 新用户登录即自动注册，表示已同意
                 <span>《用户服务协议》</span>
             </p>
         </div>
-
         <!-- 登录按钮 -->
         <div class="login_btn">
             <button :disabled="isClick" @click="handleLogin">登录</button>
@@ -27,24 +31,66 @@
 </template>
 
 <script>
-    import InputGroup from '../components/InputGroup'
+    import InputGroup from "../components/InputGroup";
     export default {
-        name: "Login",
+        name: "login",
         data() {
             return {
                 phone: "",
-                // 验证码
                 verifyCode: "",
                 errors: {},
                 btnTitle: "获取验证码",
                 disabled: false
+            };
+        },
+        computed: {
+            // 手机号和验证码不为空才能点击按钮
+            isClick() {
+                if (!this.phone || !this.verifyCode) return true;
+                else return false;
             }
         },
         methods: {
+            handleLogin() {
+                // 取消错误提醒
+                this.errors = {};
+                // 发送请求
+                this.$axios
+                    .post("/api/posts/sms_back", {
+                        phone: this.phone,
+                        code: this.verifyCode
+                    })
+                    .then(res => {
+                        // console.log(res);
+                        // 检验成功 设置登录状态并且跳转到/
+                        localStorage.setItem("ele_login", true);
+                        this.$router.push("/");
+                    })
+                    .catch(err => {
+                        // 返回错误信息
+                        this.errors = {
+                            code: err.response.data.msg
+                        };
+                    });
+            },
             getVerifyCode() {
-                if(this.validatePhone()) {
+                if (this.validatePhone()) {
                     // 发送网络请求
-                    this.validateBtn()
+                    this.$axios
+                        .post("/api/posts/sms_send", {
+                            /*tpl_id: "136729",
+                            key: "795be723dd9e88c3ea98e2b6713ab795",
+                            phone: this.phone*/
+                            sid: "0021f044d8b33fdf1f4fec4e51ca61b2",
+                            token: 'fd992275689fdcf3976958430f9329a8',
+                            appid: '2d1e25c3e6734d59a290e4ca41201f71',
+                            templateid: '529811',
+                            phone: this.phone
+                        })
+                        .then(res => {
+                            console.log(res);
+                            this.validateBtn();
+                        });
                 }
             },
             validateBtn() {
@@ -64,14 +110,14 @@
             },
             validatePhone() {
                 // 验证手机号码
-                if(!this.phone) {
+                if (!this.phone) {
                     this.errors = {
-                        phone: '手机号码不能为空'
+                        phone: "手机号码不能为空"
                     };
                     return false;
                 } else if (!/^1[345678]\d{9}$/.test(this.phone)) {
                     this.errors = {
-                        phone: '请填写正确的手机号'
+                        phone: "请填写正确的手机号码"
                     };
                     return false;
                 } else {
@@ -80,11 +126,10 @@
                 }
             }
         },
-        // 注册要用的子组件
         components: {
             InputGroup
         }
-    }
+    };
 </script>
 
 <style scoped>

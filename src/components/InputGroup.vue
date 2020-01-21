@@ -53,6 +53,7 @@
         height: 100%;
         width: 60%;
         outline: none;
+        border: none;
     }
     .input_group button {
         border: none;
