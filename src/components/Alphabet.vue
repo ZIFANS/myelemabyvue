@@ -1,8 +1,7 @@
 <template>
-    <!-- 这个div设置了 ref -->
     <div class="area" ref="area_scroll" v-if="cityInfo">
         <div class="scroll_wrap">
-            <!-- 热门城市  添加与所有城市共同的 class 就是citylist-->
+            <!-- 热门城市 -->
             <div class="hot_wrap citylist">
                 <div class="title">热门城市</div>
                 <ul class="hot_city">
@@ -31,10 +30,8 @@
         </div>
         <div class="area_keys">
             <ul>
-                <!-- #号代表0下表-->
                 <li @click="selectKey(0)">#</li>
-                <!-- A,B,C,D 各代表1,2,3,4....-->
-                <li @click="selectKey(index + 1)" v-for="(item,index) in keys" :key="index">{{ item }}</li>
+                <li @click="selectKey(index+1)" v-for="(item,index) in keys" :key="index">{{item}}</li>
             </ul>
         </div>
     </div>
@@ -55,12 +52,13 @@
         },
         methods: {
             initScroll() {
-                // 这里第一个参数就是传入该div的ref。
                 this.scroll = new BScroll(this.$refs.area_scroll, {
                     click: true
                 });
             },
             selectKey(index) {
+                // console.log(index);
+                // console.log(this.$refs.area_scroll.getElementsByClassName("citylist"));
                 const citylist = this.$refs.area_scroll.getElementsByClassName(
                     "citylist"
                 );
@@ -68,7 +66,6 @@
                 let el = citylist[index];
 
                 // 滚动到对应的位置上
-                // scrollToElement方法接收两个参数，第一个参数指定滚动到哪个位置，第二个参数指定滚动的时间
                 this.scroll.scrollToElement(el, 250);
             }
         }

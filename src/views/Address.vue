@@ -40,7 +40,6 @@
                 return this.$store.getters.location.formattedAddress;
             }
         },
-        // 监听输入框里面的内容
         watch: {
             search_val() {
                 this.searchPlace();
