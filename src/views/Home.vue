@@ -62,15 +62,20 @@
         name: "home",
         data() {
             return {
+                // swipeImgs 代表轮播图
                 swipeImgs: [],
+                // entries 代表轮播下面的分类
                 entries: [],
+                // filterData 代表综合排序、距离最近、品质联盟的数据
                 filterData: null,
+                // showFilter 代表首页搜索框是否往上提
                 showFilter: false,
                 page: 1,
                 size: 5,
                 restaurants: [], // 存放所有商家容器
                 allLoaded: false,
                 bottomPullText: "上拉加载更多",
+                // data
                 data: null
             };
         },
@@ -91,7 +96,7 @@
         methods: {
             getData() {
                 this.$axios("/api/profile/shopping").then(res => {
-                    // console.log(res.data);
+                    //console.log(res.data);
                     this.swipeImgs = res.data.swipeImgs;
                     this.entries = res.data.entries;
                 });
@@ -142,6 +147,7 @@
             showFilterView(isShow) {
                 this.showFilter = isShow;
             },
+            // update 根据排序的方式，更新首页商家的数据
             update(condation) {
                 // console.log(condation);
                 this.data = condation;

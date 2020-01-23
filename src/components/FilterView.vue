@@ -1,4 +1,5 @@
 <template>
+    <!-- hideView是点击自己的时候才触发这个事件 -->
     <div :class="{'open':isSort || isScreen}" @click.self="hideView">
         <!-- 导航 -->
         <div v-if="filterData" class="filter_wrap">
@@ -55,9 +56,13 @@
         name: "FilterView",
         data() {
             return {
+                // currentFilter 代表点击 综合排序、距离最近、品质联盟的字体加粗
                 currentFilter: 0,
+                // isSort 代表点击综合排序出现的一个模板
                 isSort: false,
+                // currentSort 代表综合排序模板里面的字体颜色和√是否为蓝
                 currentSort: 0,
+                // isScreen 代表是否显示 筛选 的模板
                 isScreen: false
             };
         },
@@ -78,21 +83,25 @@
             filterData: Object
         },
         methods: {
+            // filterSort是让点击哪个下标时候字体加粗
             filterSort(index) {
                 this.currentFilter = index;
                 switch (index) {
                     case 0:
                         this.isSort = true;
+                        // searchFixed在Home.Vue组件触发，，点击综合排序的时候将搜索框固定在最上面
                         this.$emit("searchFixed", true);
                         break;
                     case 1:
                         this.$emit("update", {
+                            // 根据距离排序
                             condition: this.filterData.navTab[1].condition
                         });
                         this.hideView();
                         break;
                     case 2:
                         this.$emit("update", {
+                            // 根据品质联盟排序
                             condition: this.filterData.navTab[2].condition
                         });
                         this.hideView();
@@ -100,6 +109,7 @@
                     case 3:
                         this.isScreen = true;
                         this.isSort = false;
+                        // 传true过去让模板页显示出来
                         this.$emit("searchFixed", true);
                         break;
                     default:
@@ -107,17 +117,21 @@
                         break;
                 }
             },
+            // hideView 隐藏综合排序的模板
             hideView() {
                 this.isSort = false;
                 this.isScreen = false;
+                // 传false过去让模板页隐藏
                 this.$emit("searchFixed", false);
             },
+            // selectSort 代表选择综合排序里面的排序方式，改变
             selectSort(item, index) {
                 this.currentSort = index;
                 this.filterData.navTab[0].name = this.filterData.sortBy[index].name;
                 this.hideView();
 
-                // 更新数据
+                // 根据选择的排序方式
+                // 在Home.Vue里面更新数据
                 this.$emit("update", { condition: item.code });
             },
             selectScreen(item, screen) {
