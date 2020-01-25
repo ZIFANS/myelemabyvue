@@ -156,7 +156,6 @@
             },
             // update 根据排序的方式，更新首页商家的数据
             update(condation) {
-                // console.log(condation);
                 this.data = condation;
                 this.loadData();
             }
