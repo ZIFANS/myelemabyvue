@@ -9,6 +9,7 @@
             <div class="index_main">
                 <!-- 第一行 品牌 -->
                 <div class="index_shopname">
+                    <!-- 品牌的icon可能没有 -->
                     <i v-if="restaurant.is_premium">品牌</i>
                     <span>{{restaurant.name}}</span>
                 </div>
@@ -44,7 +45,7 @@
 </template>
 
 <script>
-    import Rating from "./Rating";
+    import Rating from "./Rating";      // Rating代表评分
     export default {
         name: "IndeShop",
         props: {

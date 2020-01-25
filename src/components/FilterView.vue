@@ -44,6 +44,7 @@
                 </div>
             </div>
             <div class="morefilter-btn">
+                <!-- edit是一个计算属性 -->
                 <span @click="clearFilter" :class="{'edit':edit}" class="morefilter-clear">清空</span>
                 <span @click="filterOk" class="morefilter-ok">确定</span>
             </div>
@@ -67,6 +68,8 @@
             };
         },
         computed: {
+            // 判断商家服务、优惠活动、人均消费，有没有一个被选中
+            // 如果其中有一个按钮被选中，那么清空按钮的样式要改变。
             edit() {
                 let edit = false;
                 this.filterData.screenBy.forEach(screen => {
@@ -134,6 +137,7 @@
                 // 在Home.Vue里面更新数据
                 this.$emit("update", { condition: item.code });
             },
+            // 筛选里面的 只有商家服务可以多选
             selectScreen(item, screen) {
                 if (screen.id !== "MPI") {
                     // 单选
@@ -143,6 +147,7 @@
                 }
                 item.select = !item.select;
             },
+            // 点击清空按钮，清空所有选中的按钮。
             clearFilter() {
                 this.filterData.screenBy.forEach(screen => {
                     screen.data.forEach(item => {
@@ -150,6 +155,10 @@
                     });
                 });
             },
+            /*
+            当在筛选中，选择某个标签后，点击确定后触发的事件
+            这里只做了蜂鸟转送的筛选，其他都是一样的。
+             */
             filterOk() {
                 let screenData = {
                     MPI: "",
@@ -172,10 +181,9 @@
                         }
                     });
                 });
-
                 // console.log(mpiStr);
+                // 让Home.vue触发update事件，然后更新首页筛选出来的数据
                 this.$emit("update", { condition: screenData });
-
                 this.hideView();
             }
         }

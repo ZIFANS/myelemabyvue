@@ -39,6 +39,7 @@
         <FilterView :filterData="filterData" @searchFixed="showFilterView" @update="update"/>
 
         <!-- 商家信息 -->
+        <!-- top-method 上拉的方法、 bottom-method-->
         <mt-loadmore
                 :top-method="loadData"
                 :bottom-method="loadMore"
@@ -56,8 +57,8 @@
 
 <script>
     import { Swipe, SwipeItem, Loadmore } from "mint-ui";
-    import FilterView from "../components/FilterView";
-    import IndexShop from "../components/IndexShop";
+    import FilterView from "../components/FilterView";  // FilterView组件是筛选时候的页面
+    import IndexShop from "../components/IndexShop"; // IndexShop 组件是下拉数据显示的商家
     export default {
         name: "home",
         data() {
@@ -70,12 +71,16 @@
                 filterData: null,
                 // showFilter 代表首页搜索框是否往上提
                 showFilter: false,
+                // page 代表下拉请求的页数、size代表下拉请求的条数
                 page: 1,
                 size: 5,
-                restaurants: [], // 存放所有商家容器
+                // restaurants存放所有商家容器
+                restaurants: [],
+                // allLoaded是否都加载完了
                 allLoaded: false,
+                // bottomPullText 文字
                 bottomPullText: "上拉加载更多",
-                // data
+                // data 代表排序规则
                 data: null
             };
         },
@@ -106,6 +111,7 @@
                 });
                 this.loadData();
             },
+            // loadData 是要拉取商家信息  上拉刷新数据
             loadData() {
                 this.page = 1;
                 this.allLoaded = false;
@@ -119,6 +125,7 @@
                         this.restaurants = res.data;
                     });
             },
+            // 上拉加载
             loadMore() {
                 if (!this.allLoaded) {
                     this.page++;

@@ -7,7 +7,7 @@
 <script>
     // 星星长度
     const LENGTH = 5;
-    // 星星对应的class
+    // 星星对应的class。CLS_ON 全星、CLS_HALF 半星、CLS_OFF没有星
     const CLS_ON = "fa-star";
     const CLS_HALF = "fa-star-half-empty";
     const CLS_OFF = "fa-star-o";
@@ -24,7 +24,7 @@
 
                 // 对分数进行处理, 向下取0.5的倍数
                 let score = Math.floor(this.rating * 2) / 2;
-                // 控制半星
+                // 是否有半星
                 let hasDecimal = score % 1 !== 0;
                 // 全星
                 let integer = Math.floor(score);
