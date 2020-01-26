@@ -19,7 +19,7 @@
                         <ul class="entityList-cartlist">
                             <li class="entityList-entityrow" v-for="(food,index) in selectFoods" :key="index">
                                 <h4>
-                                    <span>{{food.name}}</span>
+                                    <span>{{ food.name }}</span>
                                 </h4>
                                 <span class="entityList-entitytotal">{{food.activity.fixed_price}}</span>
                                 <CartControll :food="food"/>
@@ -55,16 +55,17 @@
         name: "ShopCart",
         data() {
             return {
-                totalCount: 0,
-                totalPrice: 0,
-                selectFoods: [],
-                showCartView: false
+                totalCount: 0,          // totalCount 代表购物车商品的个数
+                totalPrice: 0,          // totalPrice   商品总价
+                selectFoods: [],        // selectFoods  所有选择的商品，然后显示在购物车中
+                showCartView: false     // showCartView 代表是否显示购物车
             };
         },
         props: {
             shopInfo: Object
         },
         computed: {
+            // 监听购物车是否有数据
             isEmpty() {
                 let empty = true;
                 this.totalCount = 0;
@@ -95,13 +96,13 @@
             }
         },
         methods: {
+            // clearFoods点击清空的时候触发的方法
             clearFoods() {
                 this.shopInfo.recommend.forEach(recommend => {
                     recommend.items.forEach(item => {
                         item.count = 0;
                     });
                 });
-
                 this.shopInfo.menu.forEach(menu => {
                     menu.foods.forEach(item => {
                         item.count = 0;

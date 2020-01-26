@@ -47,7 +47,7 @@
                             <strong>{{item.name}}</strong>
                             <span>{{item.description}}</span>
                         </div>
-                        <!-- 内容下 -->
+                        <!-- 内容下 也就是具体的商品内容 -->
                         <div
                                 @click="handleFood(food)"
                                 class="fooddetails"
@@ -89,14 +89,13 @@
         name: "Goods",
         data() {
             return {
-                // shopInfo 代表商家的信息
-                shopInfo: null,
-                menuScroll: {}, // 左侧滚动对象
-                foodScroll: {}, // 右侧滚动对象
-                scrollY: 0, // 右侧菜单当前滚动到的y值
-                listHeight: [], // 12个区列表高度
-                selectedFood: null,
-                showFood: false
+                shopInfo: null,     // shopInfo 代表商家的信息
+                menuScroll: {},     // 左侧滚动对象
+                foodScroll: {},     // 右侧滚动对象
+                scrollY: 0,         // 右侧菜单当前滚动到的y值
+                listHeight: [],     // 12个区列表高度
+                selectedFood: null, // 点击中的某个确切商品
+                showFood: false     //  是否显示商品详情页
             };
         },
         created() {
@@ -122,6 +121,7 @@
                 this.$axios("/api/profile/batch_shop").then(res => {
                     // 获取商家信息
                     res.data.recommend.forEach(recommend => {
+                        // 遍历每个商品，让他们的count = 0
                         recommend.items.forEach(item => {
                             item.count = 0;
                         });
@@ -134,9 +134,8 @@
                     });
 
                     this.shopInfo = res.data;
-                    // console.log(this.shopInfo);
                     this.$nextTick(() => {
-                        // DOM已经更新
+                        // DOM已经更新后初始化initScroll
                         this.initScroll();
                         // 计算12个区的高度
                         this.calculateHeight();
@@ -153,22 +152,23 @@
                     click: true
                 });
 
+                // .on 是添加事件，这里是添加scroll，也就是滚动事件。
                 this.foodScroll.on("scroll", pos => {
-                    // console.log(pos.y);
                     this.scrollY = Math.abs(Math.round(pos.y));
                 });
             },
+            // selectMenu 点击左侧菜单时候触发的方法。
             selectMenu(index) {
-                // console.log(index);
+                // 找到指定区域
                 let foodlist = this.$refs.foodScroll.getElementsByClassName(
                     "food-list-hook"
                 );
 
                 let el = foodlist[index];
-                // console.log(el);
                 // 滚动到对应元素的位置
                 this.foodScroll.scrollToElement(el, 250);
             },
+            // calculateHeight 计算高度
             calculateHeight() {
                 let foodlist = this.$refs.foodScroll.getElementsByClassName(
                     "food-list-hook"
@@ -183,10 +183,10 @@
                     height += item.clientHeight;
                     this.listHeight.push(height);
                 }
-                // console.log(this.listHeight);
             },
+            // handleFood 点击某个商品时候触发的方法，用于显示商品详情
             handleFood(food) {
-                console.log(food);
+                //console.log(food);
                 this.selectedFood = food;
                 this.showFood = true;
             }

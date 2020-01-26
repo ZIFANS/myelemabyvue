@@ -13,16 +13,16 @@
                     <img :src="food.image_path" alt>
                 </div>
                 <div class="foodpanel-foodinfo">
-                    <h4>{{food.name}}</h4>
+                    <h4>{{ food.name }}</h4>
                     <div class="foodpanel-foodsales">
-                        <span>月售{{food.month_sales}}</span>
-                        <span>好评率 {{food.satisfy_rate}}%</span>
+                        <span>月售{{ food.month_sales }}</span>
+                        <span>好评率 {{ food.satisfy_rate }}%</span>
                     </div>
                     <div class="foodpanel-priceLine">
-                        <span>¥{{food.activity.fixed_price}}</span>
+                        <span>¥{{ food.activity.fixed_price }}</span>
                         <CartControll class="cart-btn" :food="food"/>
                     </div>
-                    <p>{{food.description}}</p>
+                    <p>{{ food.description }}</p>
                 </div>
             </div>
         </div>
@@ -34,8 +34,8 @@
     export default {
         name: "Food",
         props: {
-            food: Object,
-            isShow: Boolean
+            food: Object,       // food
+            isShow: Boolean     //
         },
         components: {
             CartControll

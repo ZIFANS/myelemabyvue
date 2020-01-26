@@ -88,10 +88,10 @@
         methods: {
             getData() {
                 this.$axios("/api/profile/comments").then(res => {
-                    console.log(res.data);
                     this.evaluation = res.data;
                 });
             },
+            // ratingcontent
             ratingcontent(rating) {
                 const content = [
                     { txt: "吐槽", color: "rgb(137,159,188)" },

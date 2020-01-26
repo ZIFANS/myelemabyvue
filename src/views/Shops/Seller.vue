@@ -1,9 +1,10 @@
+<!-- Seller.vue 就是商家信息，都是内容，没有太多东西好讲-->
 <template>
     <div class="seller" v-if="sellerInfo">
         <section>
             <img :src="sellerInfo.header_image" alt>
-            <h3>{{sellerInfo.title}}</h3>
-            <p>{{sellerInfo.brand_intros[0].brief}}</p>
+            <h3>{{ sellerInfo.title }}</h3>
+            <p>{{ sellerInfo.brand_intros[0].brief }}</p>
             <div>查看品牌故事</div>
         </section>
     </div>
@@ -14,6 +15,7 @@
         name: "Seller",
         data() {
             return {
+                // 商家信息
                 sellerInfo: null
             };
         },
@@ -23,7 +25,6 @@
         methods: {
             getData() {
                 this.$axios("/api/profile/seller").then(res => {
-                    // console.log(res.data);
                     this.sellerInfo = res.data;
                 });
             }

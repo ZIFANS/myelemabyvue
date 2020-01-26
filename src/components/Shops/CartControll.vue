@@ -1,7 +1,11 @@
 <!-- CartControll.vue 代表的是封装添加商品 + - 号的组件-->
 <template>
     <div class="cartcontroll">
-    <span @click.stop="decreaseCount" class="cartbutton button-minus" v-if="food.count>0">
+    <!--
+    如果food.count 也就是商品的数量大于0时候，才显示 - 号，否则，只显示 + 号
+    @click.stop 取消冒泡
+    -->
+    <span @click.stop="decreaseCount" class="cartbutton button-minus" v-if="food.count > 0">
       <i class="fa fa-minus"></i>
     </span>
         <span class="cartcount" v-if="food.count>0">{{food.count}}</span>
@@ -18,9 +22,11 @@
             food: Object
         },
         methods: {
+            // 商品数量减一
             decreaseCount() {
                 this.food.count--;
             },
+            // // 商品数量加一
             increaseCount() {
                 this.food.count++;
             }
