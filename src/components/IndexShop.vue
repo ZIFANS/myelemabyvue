@@ -1,6 +1,6 @@
 <template>
     <section class="index-container">
-        <div class="index-shopInfo">
+        <div class="index-shopInfo" @click="$router.push('/shop')">
             <!-- 左侧图片 -->
             <div class="logo_container">
                 <img :src="restaurant.image_path" alt>
@@ -9,7 +9,6 @@
             <div class="index_main">
                 <!-- 第一行 品牌 -->
                 <div class="index_shopname">
-                    <!-- 品牌的icon可能没有 -->
                     <i v-if="restaurant.is_premium">品牌</i>
                     <span>{{restaurant.name}}</span>
                 </div>
@@ -45,7 +44,7 @@
 </template>
 
 <script>
-    import Rating from "./Rating";      // Rating代表评分
+    import Rating from "./Rating";
     export default {
         name: "IndeShop",
         props: {

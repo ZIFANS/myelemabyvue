@@ -52,6 +52,29 @@ const routes = [
     path: '/search',
     name: 'search',
     component: () => import('../views/Search.vue')
+  },
+  {
+    path: '/shop',
+    name: 'shop',
+    redirect: '/goods',
+    component: () => import('../views/Shops/Shop.vue'),
+    children: [
+      {
+        path: '/goods',
+        name: 'goods',
+        component: () => import('../views/Shops/Goods.vue')
+      },
+      {
+        path: '/comments',
+        name: 'comments',
+        component: () => import('../views/Shops/Comments.vue')
+      },
+      {
+        path: '/seller',
+        name: 'seller',
+        component: () => import('../views/Shops/Seller.vue')
+      }
+    ]
   }
 ]
 
