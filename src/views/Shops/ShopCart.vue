@@ -1,3 +1,4 @@
+<!-- ShopCart.vue代表购物车的组件-->
 <template>
     <div class="shopcart">
         <transition name="fade">

@@ -1,3 +1,4 @@
+<!-- CartControll.vue 代表的是封装添加商品 + - 号的组件-->
 <template>
     <div class="cartcontroll">
     <span @click.stop="decreaseCount" class="cartbutton button-minus" v-if="food.count>0">

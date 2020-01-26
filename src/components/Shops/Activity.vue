@@ -13,6 +13,7 @@
         <transition name="fade">
             <div class="act-model" v-show="showSheet">
                 <div class="activity-sheet">
+                    <!--  关闭符号 -->
                     <i @click="showSheet=false" class="fa fa-remove"></i>
                     <h2>优惠活动</h2>
                     <ul>
@@ -32,9 +33,11 @@
         name: "Activity",
         data() {
             return {
+                // showSheet 代表优惠活动的弹窗是否显示
                 showSheet: false
             };
         },
+        // activities从Shop组件接受的活动的数据
         props: {
             activities: Array
         }

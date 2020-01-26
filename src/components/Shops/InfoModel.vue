@@ -36,7 +36,7 @@
                 </h3>
                 <p class="brief-modal-yx">{{rst.promotion_info}}</p>
             </div>
-            <!-- x号 -->
+            <!-- x号 也就是关闭弹窗-->
             <div class="brief-modal-close" @click="$emit('close')">
                 <img
                         src="https://fuss10.elemecdn.com/8/ba/bcfa8cc62b20e044bd2ea1c1c7f3dpng.png?imageMogr/format/webp/"

@@ -1,3 +1,4 @@
+<!-- Goods.vue 代表点击某个商家时候，直接显示在商品的页面-->
 <template>
     <div class="goods" v-if="shopInfo">
         <!-- 商家推荐 -->
@@ -88,6 +89,7 @@
         name: "Goods",
         data() {
             return {
+                // shopInfo 代表商家的信息
                 shopInfo: null,
                 menuScroll: {}, // 左侧滚动对象
                 foodScroll: {}, // 右侧滚动对象
@@ -112,14 +114,13 @@
                         return i;
                     }
                 }
-
                 return 0;
             }
         },
         methods: {
             getData() {
                 this.$axios("/api/profile/batch_shop").then(res => {
-                    // console.log(res.data);
+                    // 获取商家信息
                     res.data.recommend.forEach(recommend => {
                         recommend.items.forEach(item => {
                             item.count = 0;

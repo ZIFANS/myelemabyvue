@@ -56,6 +56,7 @@
             return {
                 // shopInfo 代表商家信息
                 shopInfo: null,
+                // showInfoModel 是否关闭弹窗
                 showInfoModel: false
             };
         },

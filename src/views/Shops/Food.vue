@@ -1,3 +1,4 @@
+<!-- Food.vue 代表商品详情的页面-->
 <template>
     <transition name="move">
         <div class="food" v-if="isShow">
