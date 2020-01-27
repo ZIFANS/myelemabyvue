@@ -53,10 +53,10 @@
         data() {
             return {
                 title: "",
-                tags: ["家", "学校", "公司"],
-                sexes: ["先生", "女士"],
-                addressInfo: {},
-                showSearch: false
+                tags: ["家", "学校", "公司"],    // 传递标签值到TabTag.vue组件
+                sexes: ["先生", "女士"],         // 传递标签值到TabTag.vue组件
+                addressInfo: {},                // addressInfo是所有我们填写和选择的信息
+                showSearch: false               //
             };
         },
         beforeRouteEnter(to, from, next) {
@@ -66,31 +66,27 @@
             });
         },
         methods: {
+            // checkTag是在子组件中emit的方法，当选中哪个标签的时候 显示样式
             checkTag(item) {
-                // console.log(item);
                 this.addressInfo.tag = item;
             },
             checkSex(item) {
-                // console.log(item);
                 this.addressInfo.sex = item;
             },
+            // handleSave就是点击确定按钮之后，将数据保持起来
             handleSave() {
-                // console.log(this.addressInfo);
                 if (!this.addressInfo.name) {
                     this.showMsg("请输入联系人");
                     return;
                 }
-
                 if (!this.addressInfo.phone) {
                     this.showMsg("请输入手机号");
                     return;
                 }
-
                 if (!this.addressInfo.address) {
                     this.showMsg("请输入收货地址");
                     return;
                 }
-
                 // 存储数据
                 if (this.title == "添加地址") {
                     this.addAddress();
@@ -98,6 +94,10 @@
                     this.editAddress();
                 }
             },
+            /*
+                showMsg就是当输入框有哪个信息没有填写的时候，给出提示
+                这里的提示框使用了Mint UI 里面的Toast
+             */
             showMsg(msg) {
                 Toast({
                     message: msg,
@@ -105,6 +105,7 @@
                     duration: 2000
                 });
             },
+            // 将数据保持起来，保存到localStorage里面。
             addAddress() {
                 this.$axios
                     .post(
@@ -119,6 +120,7 @@
                     })
                     .catch(err => console.log(err));
             },
+            // editAddress编辑地址
             editAddress() {
                 this.$axios
                     .post(

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '../views/index'
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -86,7 +86,27 @@ const routes = [
     name: 'addAddress',
     component: () => import('../views/Orders/AddAddress.vue')
   },
-]
+  {
+    path: '/settlement',
+    name: 'settlement',
+    component: () => import('../views/Orders/Settlement.vue')
+  },
+  {
+    path: '/remark',
+    name: 'remark',
+    component: () => import('../views/Orders/Remark.vue')
+  },
+  {
+    path: '/pay',
+    name: 'pay',
+    component: () => import('../views/Orders/Pay.vue')
+  },
+  {
+    path: '/orderInfo',
+    name: 'orderInfo',
+    component: () => import('../views/Orders/OrderInfo.vue')
+  }
+];
 
 const router = new VueRouter({
   mode: 'history',

@@ -6,6 +6,7 @@
         <div class="address-view">
             <div class="address-card" v-for="(address,index) in allAddress" :key="index">
                 <div class="address-card-select">
+                    <!-- 选择的地址样式-->
                     <i class="fa fa-check-circle" v-if="selectIndex == index"></i>
                 </div>
 
@@ -42,10 +43,11 @@
         data() {
             return {
                 title: "我的地址",
-                allAddress: [],
+                allAddress: [],         // allAddress 这个localStorage里面的所有地址。
                 selectIndex: 0
             };
         },
+        // 路由守卫。
         beforeRouteEnter(to, from, next) {
             next(vm => vm.getData());
         },
@@ -69,7 +71,6 @@
             },
             getData() {
                 this.$axios(`/api/user/user_info/${localStorage.ele_login}`).then(res => {
-                    // console.log(res.data);
                     this.allAddress = res.data.myAddress;
                 });
             },

@@ -41,7 +41,10 @@
 
         <!-- 导航 -->
         <NavBar/>
-        <router-view></router-view>
+        <!-- 将子组件的请求缓存下来。 -->
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
     </div>
 </template>
 

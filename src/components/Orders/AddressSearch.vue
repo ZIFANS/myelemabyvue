@@ -1,4 +1,4 @@
-<!-- AddressSearch.vue-->
+<!-- AddressSearch.vue 是在填写地址时候，选择地址即搜索地址的组件-->
 <template>
     <div v-if="showSearch" class="addressSearch">
         <div class="search-view">
@@ -30,10 +30,11 @@
         data() {
             return {
                 search_address: "",
-                areaList: []
+                areaList: []            // 搜索到的内容
             };
         },
         computed: {
+            // 根据vuex获取限定的城市。
             city() {
                 return (
                     this.$store.getters.location.addressComponent.city ||
@@ -42,18 +43,18 @@
             }
         },
         watch: {
+            // 监听搜索的地址
             search_address(val) {
-                // console.log(val);
                 this.searchPlace(val);
             }
         },
         props: {
-            showSearch: Boolean,
+            showSearch: Boolean,    // 是否显示搜索
             addressInfo: Object
         },
         methods: {
+            // searchPlace作用：根据输入的搜索地址，调用高德地图API将搜索的东西显示出来
             searchPlace(val) {
-                // console.log(this.city);
                 // 调用高德地图的搜索
                 AMap.plugin("AMap.Autocomplete", () => {
                     // 实例化Autocomplete
@@ -64,13 +65,12 @@
                     var autoComplete = new AMap.Autocomplete(autoOptions);
                     autoComplete.search(val, (status, result) => {
                         // 搜索成功时，result即是对应的匹配数据
-                        // console.log(result);
                         this.areaList = result.tips;
                     });
                 });
             },
+            // selectAddress将点击的对象传递给父组件AddAddress.vue组件
             selectAddress(item) {
-                // console.log(item);
                 this.addressInfo.address = item.name + item.district + item.address;
                 this.$emit("close");
             }

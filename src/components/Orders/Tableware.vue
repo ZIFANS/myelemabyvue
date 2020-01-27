@@ -1,4 +1,3 @@
-<!-- TabTag.vue 代表选择的标签的组件，例如先生、女士、-->
 <template>
     <div class="input-wrap">
     <span
@@ -16,7 +15,7 @@
         name: "TabTag",
         props: {
             tags: Array,
-            selectTag: String       // 选中哪个标签
+            selectTag: String
         }
     };
 </script>

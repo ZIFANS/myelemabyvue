@@ -43,12 +43,15 @@
             icon: String,                       //
             textarea: String,
             tags: Array,
-            sex: String
+            sex: String                        // 从AddAddress.vue组件传递过来性别标签
         },
         methods: {
-            // checkTag
+            /*
+                checkTag是TabTag.vue子组件中emit的一个方法
+                这里的checkTag让父组件Address去触发
+                父子关系：AddAddress.vue -> FormBlock.vue -> TabTag.vue
+             */
             checkTag(item) {
-                // console.log(item);
                 this.$emit("checkSex", item);
             }
         },
