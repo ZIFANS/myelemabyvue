@@ -1,8 +1,10 @@
+<!-- Delivery.vue是支付页面中配送时间的组件-->
 <template>
     <section class="checkout-section">
         <div class="delivery">
             <div class="deliver-left">
                 <span class="delivery-time">送达时间</span>
+                <!-- 是否有蜂鸟转送的图标-->
                 <div v-if="shopInfo.delivery_mode.text" class="delivery-extra">
                     <span>{{shopInfo.delivery_mode.text}}</span>
                 </div>
@@ -23,11 +25,13 @@
     export default {
         name: "Delivery",
         props: {
-            shopInfo: Object
+            shopInfo: Object        // shopInfo接受支付页面的所有商品的信息
         },
         methods: {
+            // deliveryTime 处理配送时间
             deliveryTime(time) {
                 let date = new Date();
+                // 现在的时间加上 传过来的配送时间
                 date.setMinutes(date.getMinutes() + time);
                 return date.getHours() + ":" + date.getMinutes();
             }

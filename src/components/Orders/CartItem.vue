@@ -1,3 +1,4 @@
+<!-- CartItem.vue 是标签的信息。-->
 <template>
     <div class="cart-item" @click="$emit('click')">
         <div class="cart-item-title">{{title}}</div>
@@ -12,8 +13,8 @@
     export default {
         name: "CartItem",
         props: {
-            title: String,
-            subHead: String
+            title: String,          // 餐具份数、订单备注、发票信息等
+            subHead: String         // 未选择、 多点葱等信息、 不需要开发票
         }
     };
 </script>

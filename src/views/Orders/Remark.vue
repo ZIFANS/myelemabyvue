@@ -1,3 +1,4 @@
+<!-- Remark.vue 是订单备注的组件-->
 <template>
     <div class="remark">
         <Header :isLeft="true" title="订单备注"/>
@@ -33,11 +34,13 @@
         name: "Remark",
         data() {
             return {
+                // 单选框
                 radioItem: [
                     { select: false, name: "不要辣" },
                     { select: false, name: "少点辣" },
                     { select: false, name: "多点辣" }
                 ],
+                // 多选
                 switchItem: [
                     { select: false, name: "不要香菜" },
                     { select: false, name: "不要洋葱" },
@@ -48,12 +51,14 @@
             };
         },
         methods: {
+            // handleRadioItem 单选的控制
             handleRadioItem(item) {
                 this.radioItem.forEach(element => {
                     element.select = false;
                 });
                 item.select = true;
             },
+            // submitClick
             submitClick() {
                 let selectItems = "";
                 this.radioItem.forEach(element => {

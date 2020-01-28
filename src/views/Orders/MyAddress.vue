@@ -1,3 +1,4 @@
+<!-- MyAddress.vue 是我的地址的组件-->
 <template>
     <div class="myAddress">
         <Header :isLeft="true" :title="title"/>
@@ -92,6 +93,7 @@
                         this.allAddress.splice(index, 1);
                     });
             },
+            // setAddressInfo 选择收货地址
             setAddressInfo(address, index) {
                 this.selectIndex = index;
                 // 将address对象存储到vuex

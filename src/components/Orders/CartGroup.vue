@@ -1,5 +1,7 @@
+<!-- CartGroup.vue 代表具体的点餐内容-->
 <template>
     <section class="checkout-section cart-group">
+        <!-- 商家名-->
         <h3>{{orderInfo.shopInfo.name}}</h3>
         <ul>
             <li v-for="(food,index) in orderInfo.selectFoods" :key="index">
@@ -7,7 +9,7 @@
                 <div class="cart-group-info">
                     <span>{{food.name}}</span>
                     <span>x {{food.count}}</span>
-                    <span>{{food.activity.fixed_price}}</span>
+                    <span>{{ food.activity.fixed_price }}</span>
                 </div>
             </li>
             <li class="cart-group-total">
@@ -29,8 +31,8 @@
     export default {
         name: "CartGroup",
         props: {
-            orderInfo: Object,
-            totalPrice: Number
+            orderInfo: Object,      // orderInfo    是结算的所有商品信息。
+            totalPrice: Number      // totalPrice 小计 里面的总价格
         }
     };
 </script>

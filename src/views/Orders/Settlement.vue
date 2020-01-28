@@ -49,7 +49,7 @@
                     <CartItem title="发票信息" subHead="不需要开发票"/>
                 </section>
 
-                <!-- 显示Tableware -->
+                <!-- 显示Tableware 选择餐具 -->
                 <Tableware :isShow="showTableware" @close="showTableware=false"/>
             </div>
         </div>
@@ -73,9 +73,10 @@
         data() {
             return {
                 haveAddress: false,     // haveAddress为true时候，表示有收货地址，让结算页面
-                showTableware: false
+                showTableware: false    // showTableware是否显示餐具份数的组件。
             };
         },
+        // 获取存储在vuex里面的值
         computed: {
             userInfo() {
                 return this.$store.getters.userInfo;

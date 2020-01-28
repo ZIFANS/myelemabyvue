@@ -17,7 +17,7 @@ const state = {
   location: {},
   address: '',
   orderInfo: null,      // orderInfo代表订单信息
-  userInfo: null,
+  userInfo: null,       // userInfo 代表用户选择的地址保存在这里
   remarkInfo: {
     tableware: '',
     remark: ''
@@ -30,6 +30,7 @@ const getters = {
   address: state => state.address,
   orderInfo: state => state.orderInfo,
   userInfo: state => state.userInfo,
+  // 获取总价格
   totalPrice: state => {
     let price = 0;
     if (state.orderInfo) {

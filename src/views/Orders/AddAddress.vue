@@ -1,3 +1,4 @@
+<!-- AddAddress.vue 是添加地址的组件-->
 <template>
     <div class="addAddress">
         <Header :isLeft="true" :title="title"/>
