@@ -36,11 +36,12 @@
         name: "Pay",
         data() {
             return {
-                countDown: "00:15:00",
-                timer: null,
-                timeOut: false
+                countDown: "00:15:00",      // 15分钟倒计时
+                timer: null,                // timer
+                timeOut: false              // timeOut代表超时之后，确认支付按钮不能被点击
             };
         },
+        // 进入这个页面就触发倒计时的方法
         beforeRouteEnter(to, from, next) {
             next(vm => {
                 vm.countTimeDown();
@@ -62,6 +63,7 @@
             }
         },
         methods: {
+            // countTimeDown用于倒计时。
             countTimeDown() {
                 let minute = 14;
                 let second = 59;
@@ -92,14 +94,15 @@
                     this.countDown = "00:" + minute + ":" + second;
                 }, 1000);
             },
+            // 确认支付之后调用的方法。
             pay() {
                 const data = {
                     body: "米修在线",
                     out_trade_no: new Date().getTime().toString(),
-                    total_fee: 1
+                    total_fee: 1    // 以分为单位。
                 };
                 alert("进入到pay方法中");
-                // 请求 http://www.thenewstep.cn/wxzf/example/jsapi.php
+                // this.$axios 会自动加上vue.config.js 里面的域名前缀。
                 fetch("http://www.thenewstep.cn/wxzf/example/jsapi.php", {
                     method: "POST",
                     headers: {
@@ -115,6 +118,7 @@
                         alert("请求失败");
                     });
             },
+            // onBridgeReady 传data到后端
             onBridgeReady(data) {
                 WeixinJSBridge.invoke("getBrandWCPayRequest", data, res => {
                     if (res.err_msg == "get_brand_wcpay_request:ok") {

@@ -125,7 +125,9 @@
                     }
                 });
             },
+            // 点击支付时触发的方法
             handlePay() {
+                // 如果地址为空，用Toast提示。
                 if (!this.userInfo) {
                     Toast({
                         message: "请选择收货地址",
