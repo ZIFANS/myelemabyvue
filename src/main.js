@@ -6,10 +6,11 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import { Indicator } from 'mint-ui';
+import qs from 'qs';
 
+Vue.prototype.$axios = axios;
+Vue.config.productionTip = false;
 
-Vue.prototype.$axios = axios
-Vue.config.productionTip = false
 
 Vue.use(MintUI);
 
@@ -17,7 +18,12 @@ Vue.use(MintUI);
 // 解释：在
 axios.interceptors.request.use(
     config => {
-      // 加载动画
+        /*
+        if (config.method == 'post') {
+            config.data = qs.stringify(config.data);
+        }*/
+
+        // 加载动画
       Indicator.open();
       return config;
     },

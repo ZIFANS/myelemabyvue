@@ -11,7 +11,6 @@
             <div class="location">
                 <Location @click="selectCity({name:city})" :address="city"/>
             </div>
-            <!-- 该子组件定义了ref -->
             <Alphabet @selectCity="selectCity" ref="allcity" :cityInfo="cityInfo" :keys="keys"/>
         </div>
         <div class="search_list" v-else>
@@ -53,6 +52,7 @@
         },
         watch: {
             city_val() {
+                // console.log(this.city_val);
                 this.searchCity();
             }
         },
@@ -69,7 +69,6 @@
                         // keys 排序
                         this.keys.sort();
                         this.$nextTick(() => {
-                            // 调用子组件Alphabet的方法
                             this.$refs.allcity.initScroll();
                         });
 

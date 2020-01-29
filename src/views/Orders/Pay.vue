@@ -1,6 +1,6 @@
 <template>
     <div class="pay">
-        <Header title="在线支付"/>
+        <Header :isLeft="true" title="在线支付"/>
         <div class="main" v-if="orderInfo">
             <div class="tip">
                 <p class="countdown-title">支付剩余时间</p>
@@ -96,13 +96,13 @@
             },
             // 确认支付之后调用的方法。
             pay() {
+                /*
                 const data = {
                     body: "米修在线",
                     out_trade_no: new Date().getTime().toString(),
                     total_fee: 1    // 以分为单位。
                 };
                 alert("进入到pay方法中");
-                // this.$axios 会自动加上vue.config.js 里面的域名前缀。
                 fetch("http://www.thenewstep.cn/wxzf/example/jsapi.php", {
                     method: "POST",
                     headers: {
@@ -116,7 +116,9 @@
                     })
                     .catch(err => {
                         alert("请求失败");
-                    });
+                    });*/
+                alert('支付成功');
+                this.$router.push('/Home');
             },
             // onBridgeReady 传data到后端
             onBridgeReady(data) {
