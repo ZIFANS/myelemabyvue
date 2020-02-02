@@ -15,7 +15,6 @@ Vue.config.productionTip = false;
 Vue.use(MintUI);
 
 // 请求拦截
-// 解释：在
 axios.interceptors.request.use(
     config => {
         /*
