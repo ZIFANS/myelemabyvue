@@ -7,20 +7,18 @@ Vue + Vuex + Vue Router + axios + Mint UI
 
 # 项目效果
 
-- 首页
+- 首页和地址修改页面
 
-![首页](/docs/screenshot/elema_index.png)
+![首页](/docs/screenshot/elema_index.png)   ![登录](/docs/screenshot/address.png)
 
-- 店家
+- 商家和商品详情页面
 
-![店家](/docs/screenshot/shop_index.png)
-
-- 商品详情
-
-![商品详情](/docs/screenshot/commodity.png)
+![店家](/docs/screenshot/shop_index.png) ![商品详情](/docs/screenshot/commodity.png)
 
 
 # 项目运行
+
+推荐用cnpm intall (淘宝镜像，下载包更快)。
 
 ```$xslt
 git clone https://github.com/ZIFANS/myelemabyvue.git
@@ -33,8 +31,6 @@ npm run serve (开发编译)
 
 npm run build (打包发布)
 ```
-
-
 
 
 # 源码解析

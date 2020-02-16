@@ -41,13 +41,14 @@
           }
         });
       },
+      // 非精准定位
       getLngLatLocation() {
         const self = this;
         AMap.plugin("AMap.CitySearch", function() {
           var citySearch = new AMap.CitySearch();
           citySearch.getLocalCity(function(status, result) {
             if (status === "complete" && result.info === "OK") {
-              // 查询成功，result即为当前所在城市信息
+              // 查询成功，result即为当前所在城市信息, 大概位置。
               console.log(result);
               AMap.plugin("AMap.Geocoder", function() {
                 var geocoder = new AMap.Geocoder({
