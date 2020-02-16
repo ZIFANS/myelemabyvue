@@ -11,9 +11,16 @@ Vue + Vuex + Vue Router + axios + Mint UI
 
 ![首页](/docs/screenshot/elema_index.png)   ![登录](/docs/screenshot/address.png)
 
+## 登录的修改地址
+
+![登录](/docs/gif/login.gif)   ![修改地址](/docs/gif/chang_address.gif)
+
+
 - 商家和商品详情页面
 
 ![店家](/docs/screenshot/shop_index.png) ![商品详情](/docs/screenshot/commodity.png)
+
+## ![search_shop](/docs/gif/search_shop.gif)   ![登录](/docs/gif/order_good.gif)
 
 
 # 项目运行
