@@ -11,6 +11,15 @@ Vue + Vuex + Vue Router + axios + Mint UI
 
 ![首页](/docs/screenshot/elema_index.png)
 
+- 店家
+
+![店家](/docs/screenshot/shop_index.png)
+
+- 商品详情
+
+![商品详情](/docs/screenshot/commodity.png)
+
+
 # 项目运行
 
 ```$xslt
