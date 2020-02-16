@@ -5,6 +5,12 @@
 
 Vue + Vuex + Vue Router + axios + Mint UI
 
+# 项目效果
+
+- 首页
+
+![首页](/docs/screenshot/elema_index.png)
+
 # 项目运行
 
 ```$xslt
@@ -19,7 +25,7 @@ npm run serve (开发编译)
 npm run build (打包发布)
 ```
 
-# 项目效果
+
 
 
 # 源码解析
