@@ -1,5 +1,5 @@
 # 饿了么 Web App
-使用vue cli3构建的SPA移动端网页。
+使用vue cli3构建的SPA移动端网页。(2023)
 
 ## 技术栈
 
